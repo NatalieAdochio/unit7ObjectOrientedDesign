@@ -14,6 +14,8 @@ public class ComboLock
     private int num1;
     private int num2;
     private int num3;
+    private int lockState;
+    private int runTime;
     /**
      * Default constructor for objects of class ComboLock
      */
@@ -24,6 +26,8 @@ public class ComboLock
          num2= secret2;
          num3= secret3;
         locationDial= 0;
+        lockState = 0;
+        runTime= 0;
     }
 
     /**
@@ -44,6 +48,7 @@ public class ComboLock
     }
     public void turnLeft(int ticks)
     {
+        runTime++;
         for(int i = 0; i<ticks;i++)
         {
             locationDial++;
@@ -53,6 +58,14 @@ public class ComboLock
                 
             }
         }
+        if(locationDial == num1&& runTime ==1)
+        {
+            lockState++;
+        }
+        if(locationDial == num3 && runTime ==2)
+        {
+            lockState++;
+        }
     }
     public int dialPosition()
     {
@@ -61,18 +74,16 @@ public class ComboLock
     public void turnRight(int ticks)
     {
         locationDial+= (40-ticks);
+         if(locationDial == num2)
+        {
+            lockState++;
+        }
     }
     public boolean open()
     {
-        if (turnLeft(num1)== locationDial )
+        if (lockState ==3 )
         {
-            if(turnRight(num2)== locationDial)
-            {
-                if(turnLeft(num3)== locationDial)
-                {
-                    return true;
-                }
-            }
+            return true;
         }
         else
         {
