@@ -50,4 +50,8 @@ public class Question
    {
       System.out.println(text);
    }
+   public void addText(String questionText)
+   {
+       text += questionText;
+    }
 }
