@@ -9,7 +9,7 @@ public class MeasurerTester
    {
       Measurer areaMeas = new AreaMeasurer();
 
-      Rectangle[] rects = new Rectangle[] 
+      Rectangle[] rects = new Rectangle[] l
          {
             new Rectangle(5, 10, 20, 30),
             new Rectangle(10, 20, 30, 40),
