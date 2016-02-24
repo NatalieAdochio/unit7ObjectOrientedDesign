@@ -1,40 +1,48 @@
-
-
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import javax.swing.JPanel;
+import java.util.ArrayList;
+import javax.swing.JColorChooser;
 /**
  * Write a description of class DrawingPanel here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class DrawingPanel
+public class DrawingPanel extends JPanel
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
-
-    /**
-     * Default constructor for objects of class DrawingPanel
-     */
+    private JPanel panel;
+    private Color drawingColor;
+    private ArrayList<Shape> shape;  
+    private boolean currPick;
     public DrawingPanel()
     {
-        // initialise instance variables
-        x = 0;
-    }
+        this.drawingColor= Color.BLUE;
+        this.setBackground(Color.WHITE);
 
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
+        MouseListener listen = new MousePressListener();
+        this.addMouseListener(listen);
+
+        this.shape = new  ArrayList<Shape>();
+    }
+    class MousePressListener implements MouseListener, MouseMotionListener
     {
-        // put your code here
-        return x+y;
+
+    }
+    public Color getColor()
+    {
+        return drawingColor;
     }
 
+    public Dimension getPreferredSize()
+    {
+
+    }
+
+    public void pickColor()
+    {
+        Color newColor = choose.showDialog(this, "Pick a Color", this.getColor());
+    }
 }

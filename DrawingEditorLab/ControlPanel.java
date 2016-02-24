@@ -50,15 +50,16 @@ public class ControlPanel extends JPanel
         {
             if(event.actionCommand() == "Pick Color")
             {
-                
+             this.canvas.pickColor();
+             this.colorDisplay.setBackground(this.canvas.getColor());
             }
             else if(event.actionCommand()== "Add Circle")
             {
-                
+               this.canvas.addCircle(); 
             }
             else if(event.actionCommand()== "Add Square")
             {
-                
+                this.canvas.addSquare();
             }
         }
         
