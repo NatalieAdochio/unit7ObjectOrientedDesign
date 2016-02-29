@@ -1,5 +1,5 @@
-
-
+import java.awt.geom.Point2D;
+import java.awt.Color;
 /**
  * Write a description of abstract class Shape here.
  * 
@@ -9,17 +9,24 @@
 public abstract class Shape
 {
     /** description of instance variable x (add comment for each instance variable) */
-    private int x;
-
+    private double xcenter;
+    private double ycenter;
+    private Color shapeColor;
+    private double radii;
+   
     /**
      * Default constructor for objects of class Shape
      */
-    public Shape()
+    public Shape(double radius, Color color, double x, double y)
     {
         // initialise instance variables
-        x = 0;
+        xcenter= x;
+        ycenter=y;
+        shapeColor=color;
+        radii=radius;
+       
     }
-    
+
     /**
      * An example of an abstract method - replace this comment with your own
      *    that describes the operation of the method
@@ -31,7 +38,12 @@ public abstract class Shape
      * @param    y    description of parameter y
      * @return    description of the return value
      */
-    public abstract int sampleAbstractMethod(int y);
+    public Point2D.Double getCenter()
+    {
+        Point2D.Double center = new Point2D.Double();
+        center.setLocation(xcenter,ycenter);
+        return center;
+    }
 
     /**
      * An example of a method - replace this comment with your own
@@ -44,10 +56,27 @@ public abstract class Shape
      * @param    y    description of parameter y
      * @return    description of the return value
      */
-    public int sampleMethod(int y)
+    public double getRadius()
     {
         // put your code here
-        return x+y;
+        return radii;
     }
-
+    public void move(double x,double y)
+    {
+        xcenter+=x;
+        ycenter+=y;
+    }
+    public void setRadius(double r)
+    {
+        radii=r;
+    }
+    public void draw(Graphics2D g2, boolean filled)
+    {
+       if (filled==false)
+       {
+           
+        }
+        else
+        
+    }
 }

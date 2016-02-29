@@ -25,6 +25,7 @@ public class DrawingEditor extends JFrame
         
         this.setLayout( new BorderLayout());
         this.add(controls, BorderLayout.SOUTH);
+        this.setSize(canvas.getPreferredSize());
     }
 
     
@@ -35,5 +36,5 @@ public class DrawingEditor extends JFrame
         this.setVisible(true);
         //this.setSize(FRAMEW,FRAMEH);
     }
-
+    
 }

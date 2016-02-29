@@ -1,5 +1,8 @@
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+
 /**
  * Write a description of class ControlPanel here.
  * 
@@ -48,18 +51,18 @@ public class ControlPanel extends JPanel
 
         public void actionPerformed(ActionEvent event)
         {
-            if(event.actionCommand() == "Pick Color")
+            if(event.getActionCommand() == "Pick Color")
             {
-             this.canvas.pickColor();
-             this.colorDisplay.setBackground(this.canvas.getColor());
+             canvas.pickColor();
+             colorDisplay.setBackground(canvas.getColor());
             }
-            else if(event.actionCommand()== "Add Circle")
+            else if(event.getActionCommand()== "Add Circle")
             {
-               this.canvas.addCircle(); 
+               canvas.addCircle(); 
             }
-            else if(event.actionCommand()== "Add Square")
+            else if(event.getActionCommand()== "Add Square")
             {
-                this.canvas.addSquare();
+                canvas.addSquare();
             }
         }
         
