@@ -1,5 +1,6 @@
 import java.awt.geom.Point2D;
 import java.awt.Color;
+import java.awt.Graphics2D;
 /**
  * Write a description of abstract class Shape here.
  * 
@@ -61,6 +62,7 @@ public abstract class Shape
         // put your code here
         return radii;
     }
+    public abstract boolean isInside(Point2D.Double point);
     public void move(double x,double y)
     {
         xcenter+=x;
@@ -70,13 +72,6 @@ public abstract class Shape
     {
         radii=r;
     }
-    public void draw(Graphics2D g2, boolean filled)
-    {
-       if (filled==false)
-       {
-           
-        }
-        else
-        
-    }
+    public abstract void draw(Graphics2D g2, boolean filled);
+   
 }

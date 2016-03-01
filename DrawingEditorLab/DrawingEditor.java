@@ -25,6 +25,9 @@ public class DrawingEditor extends JFrame
         
         this.setLayout( new BorderLayout());
         this.add(controls, BorderLayout.SOUTH);
+        this.add(canvas, BorderLayout.CENTER);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
         this.setSize(canvas.getPreferredSize());
     }
 
@@ -32,8 +35,8 @@ public class DrawingEditor extends JFrame
     public static void main()
     {
         // put your code here
-        this.setDefultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
+        DrawingEditor drawE = new DrawingEditor();
+        
         //this.setSize(FRAMEW,FRAMEH);
     }
     

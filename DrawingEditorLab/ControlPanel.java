@@ -62,7 +62,7 @@ public class ControlPanel extends JPanel
             }
             else if(event.getActionCommand()== "Add Square")
             {
-                canvas.addSquare();
+                //canvas.addSquare();
             }
         }
         

@@ -18,7 +18,7 @@ public class DrawingPanel extends JPanel
 {
     private JPanel panel;
     private Color drawingColor;
-    private ArrayList<Shape> shape;  
+    private ArrayList<Shape> shapes;  
     private boolean currPick;
     private int width= 900;
     private  int height=900;
@@ -30,7 +30,7 @@ public class DrawingPanel extends JPanel
         //MouseListener listen = new MousePressListener();
         //this.addMouseListener(listen);
 
-        this.shape = new  ArrayList<Shape>();
+        this.shapes = new  ArrayList<Shape>();
     }
 //     class MousePressListener implements MouseListener, MouseMotionListener
 //     {
@@ -57,18 +57,22 @@ public class DrawingPanel extends JPanel
     {
        Circle circle = new Circle(23.0, drawingColor, width/2,height/2);
        shapes.add(circle);
-       currpick = true;
+       currPick = true;
        repaint();
     }
-    public void addSquare()
-    {
-        Square square = new Square(23.0, drawingColor, width/2,height/2);
-       shapes.add(square);
-       currpick = true;
-       repaint();
-    }
+//     public void addSquare()
+//     {
+//         Square square = new Square(23.0, drawingColor, width/2,height/2);
+//        shapes.add(square);
+//        currPick = true;
+//        repaint();
+//     }
     public void paintComponent(Graphics g)
     {
-        for(int i= shapes.size()-1
+       super.paintComponent(g);
+       for(int i= shapes.size()-1; i>=0;i--)
+       {
+           
+        }
     }
 }
