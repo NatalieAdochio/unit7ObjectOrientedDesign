@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import javax.swing.JColorChooser;
 import java.awt.Dimension;
 import javax.swing.JComponent;
+import java.awt.geom.Point2D;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.Graphics2D;
 /**
  * Write a description of class DrawingPanel here.
  * 
@@ -21,6 +24,7 @@ public class DrawingPanel extends JPanel
     private ArrayList<Shape> shapes;  
     private boolean currPick;
     private int width= 900;
+    private Shape activeShape;
     private  int height=900;
     public DrawingPanel()
     {
@@ -32,10 +36,39 @@ public class DrawingPanel extends JPanel
 
         this.shapes = new  ArrayList<Shape>();
     }
-//     class MousePressListener implements MouseListener, MouseMotionListener
-//     {
-// 
-//     }
+    class MousePressListener implements MouseListener, MouseMotionListener
+    
+    {
+        public void mouseClicked(MouseEvent event)
+        {}
+
+        public void mouseEntered(MouseEvent event)
+        {}
+
+        public void mouseExited(MouseEvent event)
+        {}
+
+        public void mousePressed(MouseEvent event)
+        {
+            for ( int i = shapes.size()-1; i>=0;i--)
+            {
+                if(shapes.get(i).isInside(new Point2D.Double(event.getX(),event.getY()))== true)
+                {
+                    
+                    currPick=true;
+                    activeShape=shapes.get(i);
+                    break;
+                }
+            }
+            currPick=false;
+        }
+        public void mouseDragged(MouseEvent event)
+        {}
+        public void mouseMoved(MouseEvent event)
+        {}
+        public void mouseReleased(MouseEvent event)
+        {}
+    }
     public Color getColor()
     {
         return drawingColor;
@@ -52,27 +85,30 @@ public class DrawingPanel extends JPanel
     {
         Color newColor = JColorChooser.showDialog(this, "Pick a Color", this.getColor());
     }
-    
+
     public void addCircle()
     {
-       Circle circle = new Circle(23.0, drawingColor, width/2,height/2);
-       shapes.add(circle);
-       currPick = true;
-       repaint();
+        Circle circle = new Circle(23.0, drawingColor, width/2,height/2);
+        shapes.add(circle);
+        currPick = true;
+        repaint();
     }
-//     public void addSquare()
-//     {
-//         Square square = new Square(23.0, drawingColor, width/2,height/2);
-//        shapes.add(square);
-//        currPick = true;
-//        repaint();
-//     }
+
+    public void addSquare()
+    {
+        Square square = new Square(23.0, drawingColor, width/2,height/2);
+        shapes.add(square);
+        currPick = true;
+        repaint();
+    }
+
     public void paintComponent(Graphics g)
     {
-       super.paintComponent(g);
-       for(int i= shapes.size()-1; i>=0;i--)
-       {
-           
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        for(int i= shapes.size()-1; i>=0;i--)
+        {
+            shapes.get(i).draw(g2,true);
         }
     }
 }

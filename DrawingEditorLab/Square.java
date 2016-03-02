@@ -2,7 +2,7 @@ import java.awt.geom.Point2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
-
+import java.awt.Rectangle;
 /**
  * Write a description of class Square here.
  * 
@@ -12,7 +12,7 @@ import java.awt.geom.Ellipse2D;
 public class Square extends Shape
 {
     /** description of instance variable x (add comment for each instance variable) */
-    private Ellipse2D.Double square;
+    private Rectangle square;
     /**
         /**
      * Default constructor for objects of class Circle
@@ -21,7 +21,8 @@ public class Square extends Shape
     {
         // initialise instance variables
         super(radius,color,x,y);
-        square = new Ellipse2D.Double(x-radius,y-radius,radius+radius,radius+radius);
+
+        
     }
 
     public boolean isInside(Point2D.Double point)
