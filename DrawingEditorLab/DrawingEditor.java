@@ -37,6 +37,7 @@ public class DrawingEditor extends JFrame
         // put your code here
         DrawingEditor drawE = new DrawingEditor();
         
+        
         //this.setSize(FRAMEW,FRAMEH);
     }
     

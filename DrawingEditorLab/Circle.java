@@ -38,6 +38,7 @@ public class Circle extends Shape
         g2.draw(circle);
         if(filled==true)
         {
+            g2.setColor(shapeColor);
             g2.fill(circle);
         }
     }

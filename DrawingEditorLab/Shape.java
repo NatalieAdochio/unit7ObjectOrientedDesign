@@ -12,7 +12,7 @@ public abstract class Shape
     /** description of instance variable x (add comment for each instance variable) */
     private double xcenter;
     private double ycenter;
-    private Color shapeColor;
+    public Color shapeColor;
     private double radii;
    
     /**

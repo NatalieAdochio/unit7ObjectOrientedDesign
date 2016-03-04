@@ -23,21 +23,21 @@ public class DrawingPanel extends JPanel
     private Color drawingColor;
     private ArrayList<Shape> shapes;  
     private boolean currPick;
-    private int width= 900;
+    private int width= 600;
     private Shape activeShape;
-    private  int height=900;
+    private  int height=600;
     public DrawingPanel()
     {
         this.drawingColor= Color.BLUE;
         this.setBackground(Color.WHITE);
 
-        //MouseListener listen = new MousePressListener();
-        //this.addMouseListener(listen);
+        MousePressListener listen = new MousePressListener();
+        this.addMouseListener(listen);
 
         this.shapes = new  ArrayList<Shape>();
     }
     class MousePressListener implements MouseListener, MouseMotionListener
-    
+
     {
         public void mouseClicked(MouseEvent event)
         {}
@@ -50,24 +50,51 @@ public class DrawingPanel extends JPanel
 
         public void mousePressed(MouseEvent event)
         {
+            
             for ( int i = shapes.size()-1; i>=0;i--)
             {
                 if(shapes.get(i).isInside(new Point2D.Double(event.getX(),event.getY()))== true)
                 {
-                    
                     currPick=true;
                     activeShape=shapes.get(i);
+                    repaint();
                     break;
                 }
             }
             currPick=false;
         }
+        //Get the activeShape
+        //Get the position of the mouse
+        //Make a new Shape, with radius of oldshape.getRadius() and x and y are mouse location
+        //  Replace the old shape in the arraylist with the new shape
+        //call repaint()
         public void mouseDragged(MouseEvent event)
         {}
+
         public void mouseMoved(MouseEvent event)
         {}
+
         public void mouseReleased(MouseEvent event)
-        {}
+        {
+            if (activeShape != null)
+            {
+                Shape current = activeShape;
+                double x = event.getX();
+                double y = event.getY();
+                Shape newShape;
+                if (current instanceof Circle)
+                {
+                    newShape = new Circle(current.getRadius(), current.shapeColor, x, y);
+                } 
+                else
+                {
+                    newShape = new Square(current.getRadius(), current.shapeColor, x, y);
+                }
+                int i = shapes.indexOf((Shape) activeShape);
+                shapes.set(i, newShape);
+                repaint();
+            }
+        }
     }
     public Color getColor()
     {
@@ -84,6 +111,7 @@ public class DrawingPanel extends JPanel
     public void pickColor()
     {
         Color newColor = JColorChooser.showDialog(this, "Pick a Color", this.getColor());
+        drawingColor=newColor;
     }
 
     public void addCircle()
@@ -108,7 +136,14 @@ public class DrawingPanel extends JPanel
         Graphics2D g2 = (Graphics2D) g;
         for(int i= shapes.size()-1; i>=0;i--)
         {
-            shapes.get(i).draw(g2,true);
+            if (shapes.get(i).equals(activeShape))
+            {
+                shapes.get(i).draw(g2,false);
+            }
+            else
+            {
+                shapes.get(i).draw(g2,true);
+            }
         }
     }
 }
